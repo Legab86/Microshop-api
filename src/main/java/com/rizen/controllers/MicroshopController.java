@@ -6,7 +6,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.rizen.domain.Client;
@@ -22,19 +21,6 @@ public class MicroshopController {
 	@GetMapping("/")
 	public String index() {
 		return "<center><br><br>Welcome to Microshop Market API !<center>";
-	}
-
-	@GetMapping("/hiclient")
-	public String sayHello(@RequestParam(name = "firstName", required = false) String firstName) {
-
-		if (firstName == null || firstName.isEmpty()) {
-
-			return "<center><br><br>Hi dear visitor !</center>";
-
-		} else {
-
-			return "<center><br><br>Hi dear " + firstName + " !</center>";
-		}
 	}
 
 	// 3. Rajouter une méthode permettant de récuprer en @GET les informations d'un
