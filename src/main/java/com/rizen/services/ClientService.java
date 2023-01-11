@@ -5,38 +5,45 @@ import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.util.ArrayList;
-import java.util.List;
 
 import com.rizen.domain.Client;
+import com.rizen.utils.Constantes;
 
 public class ClientService {
-	
-	public void getClientData(String url, String user, String password, String requete) {
-		List<Client> clientBD = new ArrayList<Client>();
+
+	private Connection getConnectionDB() throws ClassNotFoundException, SQLException {
+		Class.forName("com.mysql.cj.jdbc.Driver");
+		Connection cx = DriverManager.getConnection(Constantes.URL_DB, Constantes.USER_DB, Constantes.PASSWORD_DB);
+		return cx;
+	}
+
+	public Client getClientByClientId(Long clientId) {
+
+		String selectClientByIdQuery = "select idclient, nom, prenom, age, adresse from client where idclient = "
+				+ clientId;
 
 		try {
-			Connection cx = getConnectionDB(url, user, password);
-			Statement st = cx.createStatement();
-			ResultSet rs = st.executeQuery(requete);
 
-			while (rs.next()) {
-				System.out.println("id :" + rs.getString(1) + "name : " + rs.getString(2) + "age :" + rs.getString(4));
-				System.out.println("-------------------------");
+			Connection cx = getConnectionDB();
+			Statement st = cx.createStatement();
+			ResultSet rs = st.executeQuery(selectClientByIdQuery);
+
+			Client clientFound = new Client();
+
+			if(rs.next()) {
+				clientFound = new Client(rs.getLong("idclient"), rs.getString("nom"), rs.getString("prenom"),
+						rs.getLong("age"), rs.getString("adresse"));
 			}
+
+			return clientFound;
 
 		} catch (Exception e) {
 			e.printStackTrace();
-			System.out.println("ERROR :" + e.getMessage());
+			System.out.println("Client - ERROR : Impossible de trouver le client demandé !");
 		}
-		System.out.println(clientBD.toString());
-	}
 
-	private Connection getConnectionDB(String url, String user, String password)
-			throws ClassNotFoundException, SQLException {
-		Class.forName("com.mysql.jdbc.Driver");
-		Connection cx = DriverManager.getConnection(url, user, password);
-		return cx;
+		return null;
+
 	}
 
 }

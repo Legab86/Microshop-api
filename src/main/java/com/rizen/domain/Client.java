@@ -1,45 +1,71 @@
 package com.rizen.domain;
 
 public class Client {
-	public int id;
-	public String name;
-	public String age;
-	
-	
+
+	public Long idclient;
+	public String nom;
+	public String prenom;
+	public Long age;
+	public String adresse;
+
 	public Client() {
 		super();
-		
-		
+
 	}
-	public Client(int id, String nom, String age) {
+
+	public Client(Long idclient, String nom, String prenom, Long age, String adresse) {
 		super();
-		this.id = id;
-		this.name = nom;
+		this.idclient = idclient;
+		this.nom = nom;
+		this.prenom = prenom;
 		this.age = age;
+		this.adresse = adresse;
 	}
-	public int getId() {
-		return id;
+
+	public Long getIdclient() {
+		return idclient;
 	}
-	public void setId(int id) {
-		this.id = id;
+
+	public void setIdclient(Long idclient) {
+		this.idclient = idclient;
 	}
+
 	public String getNom() {
-		return name;
+		return nom;
 	}
+
 	public void setNom(String nom) {
-		this.name = nom;
+		this.nom = nom;
 	}
-	public String getAge() {
+
+	public String getPrenom() {
+		return prenom;
+	}
+
+	public void setPrenom(String prenom) {
+		this.prenom = prenom;
+	}
+
+	public Long getAge() {
 		return age;
 	}
-	public void setAge(String age) {
+
+	public void setAge(Long age) {
 		this.age = age;
 	}
+
+	public String getAdresse() {
+		return adresse;
+	}
+
+	public void setAdresse(String adresse) {
+		this.adresse = adresse;
+	}
+
 	@Override
 	public String toString() {
-		return "Person [id=" + id + ", nom=" + name + ", age=" + age + "]";
+		return "Client [idclient=" + idclient + ", nom=" + nom + ", prenom=" + prenom + ", age=" + age + ", adresse="
+				+ adresse + "]";
 	}
-	
-	
 
 }

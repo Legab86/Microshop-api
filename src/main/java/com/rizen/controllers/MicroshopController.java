@@ -9,11 +9,14 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.rizen.domain.Client;
+import com.rizen.services.ClientService;
 
 @SpringBootApplication
 @RestController
 public class MicroshopController {
 
+	ClientService clientService = new ClientService();
+	
 	public static void main(String[] args) {
 		SpringApplication.run(MicroshopController.class, args);
 	}
@@ -27,9 +30,9 @@ public class MicroshopController {
 	// Client via @PathVariable;
 
 	@GetMapping(value = "/clients/{clientid}")
-	public Client getClient(@PathVariable("clientid") int clientid) {
-
-		return null;
+	public Client getClient(@PathVariable("clientid") Long clientid) {
+		
+		return clientService.getClientByClientId(clientid);
 
 	}
 
