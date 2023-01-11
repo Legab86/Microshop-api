@@ -21,7 +21,7 @@ public class MicroshopController {
 
 	@GetMapping("/")
 	public String index() {
-		return "<center><br><br>Welcome to Microshop Market !<center>";
+		return "<center><br><br>Welcome to Microshop Market API !<center>";
 	}
 
 	@GetMapping("/hiclient")
