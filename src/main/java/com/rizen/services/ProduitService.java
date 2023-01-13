@@ -49,11 +49,13 @@ public class ProduitService {
 	
 	public void postProduit(Produit produit) {
 		String addProduit = "insert into produit (reference, nomProduit, Stock) values ('8132', 'Arachide', '3887')";
+		String addProduitD = "insert into produit (reference, nomProduit, Stock) values ('56437', 'Tomate', '10664')";
 		
 		try {
 			Connection cx = getConnectionDB();
 			Statement st = cx.createStatement();
 			st.executeUpdate(addProduit);
+			st.executeUpdate(addProduitD);
 			
 		} catch (Exception e) {
 			e.printStackTrace();
